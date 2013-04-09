@@ -117,7 +117,12 @@ StudentComposeView.prototype.saveChanges = function() {
 		url = JSConfig.getInstance().getRESTUrl() + 'students/update';
 	}
 	makeAjaxRequest(url, "POST", "json",
-	function (){
+	function (data){
+		if(data.code == JSConfig.STATUS_SUCCESS) {
+			Contact.addMessage("Student has created/updated successfully.");
+		} else {
+			Contact.addErrorMessage("Failed to create/update student.");
+		}
 		EventManager.getInstance().notifyEvent(EventManager.STUDENT_CREATED);
 	}, 
 	undefined, JSON.stringify(this.model));

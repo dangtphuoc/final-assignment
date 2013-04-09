@@ -77,7 +77,7 @@ public class CoursesController {
     public ResponseBean createCourse(@RequestBody CourseDTO courseDTO, BindingResult result) {
     	Course course = courseService.createCourse(courseDTO);
     	ErrorType error = ErrorType.SUCCESS;
-    	if(course == null) {
+    	if(course.getId() == null) {
     		error = ErrorType.FAIL;
     	}
         return new ResponseBean(error);

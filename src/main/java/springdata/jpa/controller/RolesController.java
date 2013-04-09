@@ -27,6 +27,7 @@ public class RolesController {
 	@RequestMapping(method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
 	public List<Role> getRoles() {
+		LOGGER.debug("Getting roles...");
 		return roleService.getRoles();
 	}
 }

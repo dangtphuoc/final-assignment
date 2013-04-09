@@ -65,7 +65,12 @@ LocationComposeView.prototype.saveChanges = function() {
 		var url = JSConfig.getInstance().getRESTUrl() + 'locations';
 		if(this.model.id != undefined && this.model.id != "") url += '/update';
 		makeAjaxRequest(url, "POST", "json",
-		function (){
+		function (data){
+			if(data.code == JSConfig.STATUS_SUCCESS) {
+				Contact.addMessage("Location has created/updated successfully.");
+			} else {
+				Contact.addErrorMessage("Failed to create/update location.");
+			}
 			EventManager.getInstance().notifyEvent(EventManager.LOCATION_CREATED);
 		}, 
 		undefined, JSON.stringify(this.model));

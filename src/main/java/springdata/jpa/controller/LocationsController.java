@@ -61,7 +61,7 @@ public class LocationsController {
 		
 		Location location = locationService.createLocation(locationDTO);
 		ErrorType error = ErrorType.SUCCESS;
-		if(location.getId() != null) {
+		if(location.getId() == null) {
     		error = ErrorType.FAIL;
     	}
         return new ResponseBean(error);
@@ -74,7 +74,7 @@ public class LocationsController {
 		
 		Location location = locationService.updateLocation(locationDTO);
 		ErrorType error = ErrorType.SUCCESS;
-		if(location.getId() != null) {
+		if(location == null) {
     		error = ErrorType.FAIL;
     	}
         return new ResponseBean(error);

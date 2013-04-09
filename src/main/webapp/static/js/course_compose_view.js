@@ -65,5 +65,10 @@ CourseComposeView.prototype.validateData = function() {
 	return JSConfig.STATUS_SUCCESS;
 };
 function cbSaveChanges(data) {
+	if(data.code == JSConfig.STATUS_SUCCESS) {
+		Contact.addMessage("Course has created/updated successfully.");
+	} else {
+		Contact.addErrorMessage("Failed to create/update course.");
+	}
 	EventManager.getInstance().notifyEvent(EventManager.COURSE_CREATED);
 }

@@ -96,27 +96,25 @@ public class CurriculaController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
-	public CurriculumDTO createCurriculum(@RequestBody CurriculumDTO curriculumDTO) {
+	public ResponseBean createCurriculum(@RequestBody CurriculumDTO curriculumDTO) {
 		
 		Curriculum curriculum = curriculumService.createCurriculum(curriculumDTO);
-		if(curriculum == null) {
-			LOGGER.debug("Failed to create curriculum with title: " + curriculumDTO.getTitle());
-			throw new RestResponseEntityException("Failed to create curriculum with title: " + curriculumDTO.getTitle());
-		}
-		
-		return new CurriculumDTO(curriculum);
+		ErrorType error = ErrorType.SUCCESS;
+		if(curriculum.getId() == null) {
+    		error = ErrorType.FAIL;
+    	}
+        return new ResponseBean(error);
 	}
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	@ResponseBody
-	public CurriculumDTO updateCurriculum(@RequestBody CurriculumDTO curriculumDTO) {
+	public ResponseBean updateCurriculum(@RequestBody CurriculumDTO curriculumDTO) {
 		Curriculum curriculum = curriculumService.updateCurriculum(curriculumDTO);
+		ErrorType error = ErrorType.SUCCESS;
 		if(curriculum == null) {
-			LOGGER.debug("Failed to create curriculum with id: " + curriculumDTO.getId());
-			throw new RestResponseEntityException("Failed to update curriculum with id: " + curriculumDTO.getId());
-		}
-		
-		return new CurriculumDTO(curriculum);
+    		error = ErrorType.FAIL;
+    	}
+        return new ResponseBean(error);
 	}
 	
 	@RequestMapping(value="/enroll", method=RequestMethod.POST)

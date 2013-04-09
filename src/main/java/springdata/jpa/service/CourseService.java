@@ -17,7 +17,7 @@ public class CourseService {
 	 */
 	public Course createCourse(CourseDTO courseDTO) {
 		//call repository layer to save course, then return created course entity
-		return new Course();
+		return DummyDataRepository.getCourse();
 	}
 
 	/**

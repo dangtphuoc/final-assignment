@@ -100,7 +100,7 @@ public class StudentsController {
 	public ResponseBean createStudent(@RequestBody StudentDTO studentDTO) {
 		Student student = studentService.createStudent(studentDTO);
 		ErrorType error = ErrorType.SUCCESS;
-		if(student.getId() != null) {
+		if(student.getId() == null) {
     		error = ErrorType.FAIL;
     	}
         return new ResponseBean(error);
@@ -111,7 +111,7 @@ public class StudentsController {
 	public ResponseBean updateStudent(@RequestBody StudentDTO studentDTO) {
 		Student student = studentService.updateStudent(studentDTO);
 		ErrorType error = ErrorType.SUCCESS;
-		if(student.getId() != null) {
+		if(student == null) {
     		error = ErrorType.FAIL;
     	}
         return new ResponseBean(error);
