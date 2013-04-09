@@ -49,7 +49,7 @@ ClassOfferingComposeView.prototype.initializeInstructors = function() {
 
 ClassOfferingComposeView.prototype.repaint = function() {
 	var simpleTable = new SimpleTableView();
-	var header = ['Title', 'Start Date', 'End Date', 'Location', 'Instructor', ''];
+	var header = ['Title', 'Start Time', 'End Time', 'Location', 'Instructor', ''];
 	simpleTable.setHeader(header);
 	var data = this.model;
 	var model = [];
