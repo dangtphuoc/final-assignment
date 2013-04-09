@@ -1,19 +1,5 @@
 delimiter ;
 CREATE DATABASE `finalassignmentdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-CREATE TABLE `contacts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `country` varchar(20) DEFAULT NULL,
-  `post_code` varchar(10) DEFAULT NULL,
-  `post_office` varchar(40) DEFAULT NULL,
-  `state` varchar(20) DEFAULT NULL,
-  `street_address` varchar(150) DEFAULT NULL,
-  `email_address` varchar(100) DEFAULT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `phone_number` varchar(30) DEFAULT NULL,
-  `version` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tbl_role` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
