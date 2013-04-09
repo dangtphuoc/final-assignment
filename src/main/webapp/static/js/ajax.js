@@ -18,7 +18,7 @@ function makeAjaxRequest(url, method, mine, cbSuccess, cbFail, data) {
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.status + " " + jqXHR.responseText);
+			Contact.addErrorMessage("There is an error with system (ErrorCode = " + jqXHR.status + ", ErrorMessage = " + jqXHR.responseText);
 		}
 	});
 }
