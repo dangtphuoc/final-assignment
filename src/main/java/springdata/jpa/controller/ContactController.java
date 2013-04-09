@@ -136,12 +136,12 @@ public class ContactController {
      * @param model The model.
      * @return  The name of the home page view.
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/contact/home", method = RequestMethod.GET)
     public String showHomePage(Model model) {
         LOGGER.debug("Rendering home page");
 
-        //List<Contact> contacts = service.findAll();
-        //model.addAttribute(MODEL_ATTRIBUTE_CONTACTS, contacts);
+        List<Contact> contacts = service.findAll();
+        model.addAttribute(MODEL_ATTRIBUTE_CONTACTS, contacts);
 
         return HOME_VIEW;
     }
