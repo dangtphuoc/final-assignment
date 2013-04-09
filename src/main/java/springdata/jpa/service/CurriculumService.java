@@ -18,8 +18,18 @@ public class CurriculumService {
 	 * @param curriculumDTO
 	 * @return Curriculum created
 	 */
-	public Curriculum createUpdateCurriculum(CurriculumDTO curriculumDTO) {
+	public Curriculum createCurriculum(CurriculumDTO curriculumDTO) {
 		//call repository to create curriculum
+		return DummyDataRepository.getCurriculum();
+	}
+	
+	/**
+	 * Create/update a curriculum
+	 * @param curriculumDTO
+	 * @return Curriculum created
+	 */
+	public Curriculum updateCurriculum(CurriculumDTO curriculumDTO) {
+		//call repository to update curriculum
 		return DummyDataRepository.getCurriculum();
 	}
 

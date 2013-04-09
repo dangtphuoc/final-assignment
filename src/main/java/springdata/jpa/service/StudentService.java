@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import springdata.jpa.dto.StudentDTO;
 import springdata.jpa.model.AbstractEntity;
 import springdata.jpa.model.Student;
 
@@ -30,12 +31,22 @@ public class StudentService {
 	}
 
 	/**
-	 * Create/update student
+	 * Create student
 	 * @param student
 	 * @return Student created/updated
 	 */
-	public Student createUpdateStudent(Student student) {
-		//create or update student
+	public Student createStudent(StudentDTO student) {
+		//create student
+		return DummyDataRepository.getStudent();
+	}
+	
+	/**
+	 * update student
+	 * @param student
+	 * @return Student created/updated
+	 */
+	public Student updateStudent(StudentDTO student) {
+		//update student
 		return DummyDataRepository.getStudent();
 	}
 

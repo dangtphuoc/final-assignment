@@ -76,6 +76,7 @@ CurriculumComposeView.prototype.loadCourseTable = function() {
 
 CurriculumComposeView.prototype.handleAddedCourses = function(addedCourses) {
 	if(addedCourses != undefined) {
+		if(this.model.courses == undefined) this.model.courses = new Array();
 		this.model.courses = this.model.courses.concat(addedCourses);
 		this.loadCourseTable();
 	}

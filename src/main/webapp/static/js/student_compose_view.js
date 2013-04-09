@@ -112,9 +112,9 @@ StudentComposeView.prototype.saveChanges = function() {
 	if(this.$manager.val() != undefined && this.$manager.val() != '') {
 		this.model.manager = {id : this.$manager.val()};
 	}
-	var url = JSConfig.getInstance().getRESTUrl() + 'students/update';
-	if(this.isCreate) {
-		url = JSConfig.getInstance().getRESTUrl() + 'student';
+	var url = JSConfig.getInstance().getRESTUrl() + 'students';
+	if(this.model.id != undefined && this.model.id != "") {
+		url = JSConfig.getInstance().getRESTUrl() + 'students/update';
 	}
 	makeAjaxRequest(url, "POST", "json",
 	function (){

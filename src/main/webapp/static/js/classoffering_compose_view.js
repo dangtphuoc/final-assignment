@@ -17,7 +17,7 @@ function ClassOfferingComposeView() {
 	});
 	
 	this.initializeLocations();
-	this.initializeInstructors();
+	this.initializeInstructors();	
 	return this;
 }
 
@@ -83,6 +83,7 @@ ClassOfferingComposeView.prototype.addOffering = function() {
 	if(this.$instructor.val() != undefined && this.$instructor.val() != "") {
 		offering.instructor = {id: this.$instructor.val(), firstName: this.$instructor.find(":selected").text()};
 	}
+	if(this.model == undefined) this.model = new Array();
 	this.model.push(offering);
 	
 	this.repaint();

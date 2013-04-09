@@ -97,8 +97,8 @@ public class StudentsController {
 
 	@RequestMapping(method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
-	public ResponseBean createStudent(@RequestBody Student student) {
-		student = studentService.createUpdateStudent(student);
+	public ResponseBean createStudent(@RequestBody StudentDTO studentDTO) {
+		Student student = studentService.createStudent(studentDTO);
 		ErrorType error = ErrorType.SUCCESS;
 		if(student.getId() != null) {
     		error = ErrorType.FAIL;
@@ -108,8 +108,8 @@ public class StudentsController {
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
-	public ResponseBean updateStudent(@RequestBody Student student) {
-		student = studentService.createUpdateStudent(student);
+	public ResponseBean updateStudent(@RequestBody StudentDTO studentDTO) {
+		Student student = studentService.updateStudent(studentDTO);
 		ErrorType error = ErrorType.SUCCESS;
 		if(student.getId() != null) {
     		error = ErrorType.FAIL;

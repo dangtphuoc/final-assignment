@@ -98,7 +98,7 @@ public class CurriculaController {
 	@ResponseBody
 	public CurriculumDTO createCurriculum(@RequestBody CurriculumDTO curriculumDTO) {
 		
-		Curriculum curriculum = curriculumService.createUpdateCurriculum(curriculumDTO);
+		Curriculum curriculum = curriculumService.createCurriculum(curriculumDTO);
 		if(curriculum == null) {
 			LOGGER.debug("Failed to create curriculum with title: " + curriculumDTO.getTitle());
 			throw new RestResponseEntityException("Failed to create curriculum with title: " + curriculumDTO.getTitle());
@@ -110,7 +110,7 @@ public class CurriculaController {
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	@ResponseBody
 	public CurriculumDTO updateCurriculum(@RequestBody CurriculumDTO curriculumDTO) {
-		Curriculum curriculum = curriculumService.createUpdateCurriculum(curriculumDTO);
+		Curriculum curriculum = curriculumService.updateCurriculum(curriculumDTO);
 		if(curriculum == null) {
 			LOGGER.debug("Failed to create curriculum with id: " + curriculumDTO.getId());
 			throw new RestResponseEntityException("Failed to update curriculum with id: " + curriculumDTO.getId());
