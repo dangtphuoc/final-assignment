@@ -103,3 +103,12 @@ CREATE TABLE `tbl_curriculumregistration` (
   CONSTRAINT `FK14EDEA75577CCAE0` FOREIGN KEY (`CurriculumId`) REFERENCES `tbl_curriculum` (`Id`),
   CONSTRAINT `FK14EDEA75D6AFEEC7` FOREIGN KEY (`student`) REFERENCES `tbl_student` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO tbl_role(Id, Description,Title) VALUES(1,'Administrator','Administrator');
+INSERT INTO tbl_role(Id, Description,Title) VALUES(2,'Manager','Manager');
+INSERT INTO tbl_role(Id, Description,Title) VALUES(3,'Instructor','Instructor');
+INSERT INTO tbl_role(Id, Description,Title) VALUES(4,'Student','Student');
+
+INSERT INTO tbl_student(Id, FirstName, LastName) VALUES(1, 'Administrator', 'Administrator');
+INSERT INTO tbl_studentrole(StudentId, RoleId) VALUES(1, 1);
+INSERT INTO tbl_studentrole(StudentId, RoleId) VALUES(1, 2);
