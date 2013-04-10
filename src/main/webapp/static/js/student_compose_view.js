@@ -96,34 +96,46 @@ StudentComposeView.prototype.repaint = function() {
 };
 
 StudentComposeView.prototype.saveChanges = function() {
-	var title = this.$firstName.val();
-	var description = this.$lastName.val();
-	this.model.firstName = title;
-	this.model.lastName = description;
-	this.model.roles = [];
-	var selectedRoles = this.$roles.val();
-	if(selectedRoles != undefined) {
-		for(var i in selectedRoles) {
-			this.model.roles.push({id : selectedRoles[i]});
+	var errorCode = this.validateData();
+	if(errorCode == JSConfig.STATUS_SUCCESS) {
+		var title = this.$firstName.val();
+		var description = this.$lastName.val();
+		this.model.firstName = title;
+		this.model.lastName = description;
+		this.model.roles = [];
+		var selectedRoles = this.$roles.val();
+		if(selectedRoles != undefined) {
+			for(var i in selectedRoles) {
+				this.model.roles.push({id : selectedRoles[i]});
+			}
 		}
-	}
-	
-	//manager
-	if(this.$manager.val() != undefined && this.$manager.val() != '') {
-		this.model.manager = {id : this.$manager.val()};
-	}
-	var url = JSConfig.getInstance().getRESTUrl() + 'students';
-	if(this.model.id != undefined && this.model.id != "") {
-		url = JSConfig.getInstance().getRESTUrl() + 'students/update';
-	}
-	makeAjaxRequest(url, "POST", "json",
-	function (data){
-		if(data.code == JSConfig.STATUS_SUCCESS) {
-			Contact.addMessage("Student has created/updated successfully.");
-		} else {
-			Contact.addErrorMessage("Failed to create/update student.");
+		
+		//manager
+		if(this.$manager.val() != undefined && this.$manager.val() != '') {
+			this.model.manager = {id : this.$manager.val()};
 		}
-		EventManager.getInstance().notifyEvent(EventManager.STUDENT_CREATED);
-	}, 
-	undefined, JSON.stringify(this.model));
+		var url = JSConfig.getInstance().getRESTUrl() + 'students';
+		if(this.model.id != undefined && this.model.id != "") {
+			url = JSConfig.getInstance().getRESTUrl() + 'students/update';
+		}
+		makeAjaxRequest(url, "POST", "json",
+		function (data){
+			if(data.code == JSConfig.STATUS_SUCCESS) {
+				Contact.addMessage("Student has created/updated successfully.");
+			} else {
+				Contact.addErrorMessage("Failed to create/update student.");
+			}
+			EventManager.getInstance().notifyEvent(EventManager.STUDENT_CREATED);
+		}, 
+		undefined, JSON.stringify(this.model));
+	} else {
+		Contact.addErrorMessage("Invalid Data.");
+	}
+	return errorCode;
+};
+StudentComposeView.prototype.validateData = function() {
+	if(this.$firstName.val() == "" || this.$lastName.val() == ""
+		|| this.$roles.val() == undefined || this.$roles.val().length == 0
+		|| this.$manager.val() == "") return JSConfig.STATUS_FAIL;
+	return JSConfig.STATUS_SUCCESS;
 };
